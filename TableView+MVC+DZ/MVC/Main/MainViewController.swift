@@ -52,11 +52,14 @@ class MainViewController: UIViewController, MainViewProtocol {
 extension MainViewController {
     
     func showNextScreen() {
-        let storyboard = UIStoryboard(name: "SecondViewController", bundle: Bundle.main)
-        guard let secondViewController = storyboard.instantiateViewController(identifier: "SecondViewController") as? SecondViewController else {
+        let storyboard = UIStoryboard(name: "Second", bundle: Bundle.main)
+        guard let secondViewController = storyboard.instantiateViewController(identifier: "Second") as? SecondViewController else {
             return
         }
         
+        secondViewController.presenter = SecondPresenter()
+        
+//        show(secondViewController, sender: nil)
         navigationController?.pushViewController(secondViewController, animated: true)
     }
    
