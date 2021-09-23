@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g70-ZV-XnB">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Usl-7d-ja9">
+            <objects>
+                <navigationController id="g70-ZV-XnB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CYm-wa-SrB">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1t2-l7-yzn" kind="relationship" relationship="rootViewController" id="sPp-RT-SZ3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x7I-TB-N5O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-642" y="88"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="rpV-mr-Pav">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" id="1t2-l7-yzn" customClass="MainViewController" customModule="TableView_MVC_DZ" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dHv-Ld-GZd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lur-OX-sgM">
+                                <rect key="frame" x="20" y="431" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBJ-gO-gqq">
+                                <rect key="frame" x="100" y="521" width="214" height="33"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.84313725490196079" blue="0.71372549019607845" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nextViewAction:" destination="1t2-l7-yzn" eventType="touchUpInside" id="eef-Qc-cyj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lO1-Lq-3c2"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lO1-Lq-3c2" firstAttribute="trailing" secondItem="Lur-OX-sgM" secondAttribute="trailing" constant="20" id="2ty-oF-DzF"/>
+                            <constraint firstItem="NBJ-gO-gqq" firstAttribute="centerX" secondItem="dHv-Ld-GZd" secondAttribute="centerX" id="3gR-s0-lz4"/>
+                            <constraint firstItem="NBJ-gO-gqq" firstAttribute="leading" secondItem="lO1-Lq-3c2" secondAttribute="leading" constant="100" id="LVN-Ww-ali"/>
+                            <constraint firstItem="NBJ-gO-gqq" firstAttribute="top" secondItem="Lur-OX-sgM" secondAttribute="bottom" constant="56" id="Wwh-1J-zbE"/>
+                            <constraint firstItem="Lur-OX-sgM" firstAttribute="centerY" secondItem="dHv-Ld-GZd" secondAttribute="centerY" id="axi-9T-xjy"/>
+                            <constraint firstItem="lO1-Lq-3c2" firstAttribute="trailing" secondItem="NBJ-gO-gqq" secondAttribute="trailing" constant="100" id="hQf-wk-44p"/>
+                            <constraint firstItem="Lur-OX-sgM" firstAttribute="leading" secondItem="lO1-Lq-3c2" secondAttribute="leading" constant="20" id="xDY-my-L3l"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ub7-eJ-RD6"/>
+                    <connections>
+                        <outlet property="textFildOutlet" destination="Lur-OX-sgM" id="3IW-tz-sXE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7B-uH-bVm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="112" y="89"/>
+        </scene>
+    </scenes>
+</document>
