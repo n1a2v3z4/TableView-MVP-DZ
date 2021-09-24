@@ -23,7 +23,7 @@ protocol MainPresenterProtocol: AnyObject {
 
 class MainPresenter: MainPresenterProtocol {
    
-    
+    private var passwd = "4444"
    
 
     weak var view: MainViewProtocol?
@@ -33,10 +33,15 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     func buttonPressedNext() {
-        view?.showNextScreen()
+        if passwd == view?.text() {
+            view?.showNextScreen()
+        } else {
+            buttonPressedError()
+        }
     }
     
     func buttonPressedError() {
+        view?.allertError()
     }
     
 }

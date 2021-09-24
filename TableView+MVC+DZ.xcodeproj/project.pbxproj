@@ -86,9 +86,9 @@
 		D3A2572126FC9005002EDD55 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				D3A2572326FC9030002EDD55 /* Main.storyboard */,
-				D3A2572426FC9030002EDD55 /* MainPresenter.swift */,
 				D3A2572526FC9030002EDD55 /* MainViewController.swift */,
+				D3A2572426FC9030002EDD55 /* MainPresenter.swift */,
+				D3A2572326FC9030002EDD55 /* Main.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -96,9 +96,9 @@
 		D3A2572226FC9014002EDD55 /* Second */ = {
 			isa = PBXGroup;
 			children = (
-				D3A2572926FC9044002EDD55 /* Second.storyboard */,
-				D3A2572A26FC9044002EDD55 /* SecondPresenter.swift */,
 				D3A2572B26FC9044002EDD55 /* SecondViewController.swift */,
+				D3A2572A26FC9044002EDD55 /* SecondPresenter.swift */,
+				D3A2572926FC9044002EDD55 /* Second.storyboard */,
 			);
 			path = Second;
 			sourceTree = "<group>";
