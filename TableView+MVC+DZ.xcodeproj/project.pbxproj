@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D34C388827008B2E0092F8A9 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34C388727008B2E0092F8A9 /* MainTableViewCell.xib */; };
+		D34C388A27008B490092F8A9 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C388927008B490092F8A9 /* MainTableViewCell.swift */; };
 		D3A2570D26FC8FF0002EDD55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2570C26FC8FF0002EDD55 /* AppDelegate.swift */; };
 		D3A2570F26FC8FF0002EDD55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2570E26FC8FF0002EDD55 /* SceneDelegate.swift */; };
 		D3A2571626FC8FF3002EDD55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A2571526FC8FF3002EDD55 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D34C388727008B2E0092F8A9 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		D34C388927008B490092F8A9 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		D3A2570926FC8FF0002EDD55 /* TableView+MVC+DZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TableView+MVC+DZ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A2570C26FC8FF0002EDD55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A2570E26FC8FF0002EDD55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D34C388627008B080092F8A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D34C388727008B2E0092F8A9 /* MainTableViewCell.xib */,
+				D34C388927008B490092F8A9 /* MainTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D3A2570026FC8FF0002EDD55 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +109,7 @@
 		D3A2572226FC9014002EDD55 /* Second */ = {
 			isa = PBXGroup;
 			children = (
+				D34C388627008B080092F8A9 /* View */,
 				D3A2572B26FC9044002EDD55 /* SecondViewController.swift */,
 				D3A2572A26FC9044002EDD55 /* SecondPresenter.swift */,
 				D3A2572926FC9044002EDD55 /* Second.storyboard */,
@@ -164,6 +178,7 @@
 				D3A2571626FC8FF3002EDD55 /* Assets.xcassets in Resources */,
 				D3A2572C26FC9044002EDD55 /* Second.storyboard in Resources */,
 				D3A2572626FC9030002EDD55 /* Main.storyboard in Resources */,
+				D34C388827008B2E0092F8A9 /* MainTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +192,7 @@
 				D3A2570D26FC8FF0002EDD55 /* AppDelegate.swift in Sources */,
 				D3A2572D26FC9044002EDD55 /* SecondPresenter.swift in Sources */,
 				D3A2570F26FC8FF0002EDD55 /* SceneDelegate.swift in Sources */,
+				D34C388A27008B490092F8A9 /* MainTableViewCell.swift in Sources */,
 				D3A2572E26FC9044002EDD55 /* SecondViewController.swift in Sources */,
 				D3A2572726FC9030002EDD55 /* MainPresenter.swift in Sources */,
 				D3A2572826FC9030002EDD55 /* MainViewController.swift in Sources */,

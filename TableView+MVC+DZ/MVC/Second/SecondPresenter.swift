@@ -15,22 +15,37 @@ import Foundation
 protocol SecondPresenterProtocol: AnyObject {
 	var view: SecondViewProtocol? { get set }
     func viewDidLoad()
+    func firstDisplay()
+    func numberOfElementsInTMassiv() -> Int
 }
 
 class SecondPresenter: SecondPresenterProtocol {
-
-    private var string: String
-    private weak var delegate: MainPresenterProtocol?
+   
+    
+    
     
     weak var view: SecondViewProtocol?
-    
-    init(string: String, delegate: MainPresenterProtocol?) {
-        self.string = string
-        self.delegate = delegate
-    }
     
     func viewDidLoad() {
         
     }
     
+    func firstDisplay() {
+        if view?.massImageCount() == 0 {
+                    view?.addLable()
+                } else {
+                    view?.hideLable()
+                    view?.addTableView()
+            
+        }
+    }
+
+    func numberOfElementsInTMassiv() -> Int {
+       return view?.massImageCount() ?? 0
+    }
+    
+    
 }
+
+
+

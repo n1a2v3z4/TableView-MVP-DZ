@@ -62,5 +62,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>add nev photo</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>add new photo</string>
 </dict>
 </plist>

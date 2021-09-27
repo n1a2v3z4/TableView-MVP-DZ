@@ -4,23 +4,73 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Second View Controller-->
         <scene sceneID="rpV-mr-Pav">
             <objects>
-                <viewController storyboardIdentifier="Second" id="1t2-l7-yzn" customClass="SecondViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondViewController" id="1t2-l7-yzn" customClass="SecondViewController" customModule="TableView_MVC_DZ" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dHv-Ld-GZd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XE8-hg-8JJ">
+                                <rect key="frame" x="20" y="791" width="374" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="Добавить фото"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addImageAction:" destination="1t2-l7-yzn" eventType="touchUpInside" id="98I-AI-fFv"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="inL-fB-LKN">
+                                <rect key="frame" x="0.0" y="44" width="414" height="717"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gJ9-mp-4sO">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gJ9-mp-4sO" id="sJk-KK-OqH">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lO1-Lq-3c2"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lO1-Lq-3c2" firstAttribute="trailing" secondItem="inL-fB-LKN" secondAttribute="trailing" id="AKc-Qi-OA6"/>
+                            <constraint firstItem="lO1-Lq-3c2" firstAttribute="trailing" secondItem="XE8-hg-8JJ" secondAttribute="trailing" constant="20" id="UZo-WA-DVt"/>
+                            <constraint firstItem="lO1-Lq-3c2" firstAttribute="bottom" secondItem="XE8-hg-8JJ" secondAttribute="bottom" constant="41" id="WJp-3x-Hb4"/>
+                            <constraint firstItem="XE8-hg-8JJ" firstAttribute="leading" secondItem="lO1-Lq-3c2" secondAttribute="leading" constant="20" id="aWR-TI-zF2"/>
+                            <constraint firstItem="XE8-hg-8JJ" firstAttribute="top" secondItem="inL-fB-LKN" secondAttribute="bottom" constant="30" id="cpz-hy-Wd5"/>
+                            <constraint firstItem="inL-fB-LKN" firstAttribute="top" secondItem="lO1-Lq-3c2" secondAttribute="top" id="hvc-0i-a1H"/>
+                            <constraint firstItem="inL-fB-LKN" firstAttribute="leading" secondItem="lO1-Lq-3c2" secondAttribute="leading" id="tk3-EB-y7p"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableViewOutlet" destination="inL-fB-LKN" id="OPy-uQ-2hP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7B-uH-bVm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="112" y="89"/>
+            <point key="canvasLocation" x="111.59420289855073" y="88.392857142857139"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

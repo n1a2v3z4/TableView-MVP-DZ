@@ -15,12 +15,13 @@ protocol MainViewProtocol: AnyObject {
     func showNextScreen()
     func text() -> String
     func allertError()
-    
 }
 
 class MainViewController: UIViewController, MainViewProtocol {
+    var text1: String = ""
     
-    @IBOutlet weak private var textFildOutlet: UITextField!
+      @IBOutlet private weak  var textFildOutlet: UITextField!
+    
     
     var presenter: MainPresenterProtocol = MainPresenter()
     

@@ -16,14 +16,14 @@ protocol MainPresenterProtocol: AnyObject {
 	var view: MainViewProtocol? { get set }
     func viewDidLoad()
     func buttonPressedNext()
-    func buttonPressedError()
+
 
 }
 
 
 class MainPresenter: MainPresenterProtocol {
    
-    private var passwd = "4444"
+    private let passwd = "4444"
    
 
     weak var view: MainViewProtocol?

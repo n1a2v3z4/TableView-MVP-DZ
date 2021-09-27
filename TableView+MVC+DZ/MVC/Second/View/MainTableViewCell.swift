@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import UIKit
+
+class MainTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var imageViewCell: UIImageView!
+    
+    func update(with image: UIImage) {
+        imageViewCell.image = image
+        
+    }
+}
