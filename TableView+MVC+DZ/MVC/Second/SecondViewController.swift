@@ -12,30 +12,22 @@ import UIKit
 // MARK: View -
 protocol SecondViewProtocol: AnyObject {
     
-    func massImageCount() -> Int
-    
     func addLable()
     
     func hideLable()
     
     func addTableView()
     
-    func addImageInTableView(image: UIImage)
-    
-    func elementInMassivImage (for indexPah: IndexPath) -> UIImage
-    
     func removeImage (for indexPah: IndexPath)
+    
 }
 
 
 class SecondViewController: UIViewController, SecondViewProtocol {
     
-    
     @IBOutlet weak var tableViewOutlet: UITableView!
     
     var lableOutlet: UILabel!
-    
-    var massImage:[UIImage] = []
     
     var presenter: SecondPresenterProtocol = SecondPresenter()
     
@@ -58,16 +50,10 @@ class SecondViewController: UIViewController, SecondViewProtocol {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
-        
     }
 }
 
 extension SecondViewController {
-    
-    func massImageCount() -> Int {     //количество элементов в массиве
-        let count = massImage.count
-        return count
-    }
     
     func addLable() {              //создали лэйбл
         tableViewOutlet.isHidden = true
@@ -82,31 +68,21 @@ extension SecondViewController {
     
     func hideLable() {                     //скрыли лэйбл
         lableOutlet.isHidden = true
-        
     }
     
     func addTableView() {                 //показали таблицу
         tableViewOutlet.isHidden = false
     }
     
-    func addImageInTableView(image: UIImage) {                //добавили картинку в ячейку
-        massImage.append(image)
-        tableViewOutlet.insertRows(at: [IndexPath(row: massImageCount() - 1, section: 0)], with: .automatic)
-        
-    }
-    
-    func elementInMassivImage(for indexPah: IndexPath) -> UIImage {  //возвращает элемент из массива
-        return massImage[indexPah.row]
-    }
     
     func removeImage(for indexPah: IndexPath) {                   //удалили картинку delete
-        massImage.remove(at: indexPah.row)
         tableViewOutlet.deleteRows(at: [indexPah], with: .automatic)
     }
     
-    
+    func pngDataImage(image: UIImage) -> Data {                  //2
+        return image.pngData()!
+    }
 }
-
 
 extension SecondViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -115,13 +91,17 @@ extension SecondViewController: UINavigationControllerDelegate, UIImagePickerCon
             return
         }
         
-        addImageInTableView(image: image)
+        let data = pngDataImage(image: image)          //2
         
-        presenter.firstDisplay()          //убрали лэйбл и добавили таблицу
+        presenter.addDataInMassivData(data: data)      //2
+        
+        
+        presenter.firstDisplay()  //убрали лэйбл и добавили таблицу
+        
+        tableViewOutlet.insertRows(at: [IndexPath(row: presenter.numberOfElementsInTMassiv() - 1, section: 0)], with: .top)   //создает ячейку по индеку и сразу вызывает все делегатные методы таблицы
         
     }
 }
-
 
 
 extension SecondViewController: UITableViewDelegate {
@@ -132,7 +112,7 @@ extension SecondViewController: UITableViewDelegate {
                     style: .destructive,
                     title: "Delete",
                     handler: { _, _, _ in
-                        self.removeImage(for: indexPath)
+                        self.presenter.removeImage(for: indexPath)
                     }
                 )
             ]
@@ -140,8 +120,6 @@ extension SecondViewController: UITableViewDelegate {
         return configuration
     }
 }
-
-
 
 extension SecondViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -152,7 +130,8 @@ extension SecondViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else {
             return UITableViewCell()
         }
-        cell.update(with: elementInMassivImage(for: indexPath))
+        
+        cell.update(with: presenter.elementInMassivImage(for: indexPath))
         return cell
     }
 }

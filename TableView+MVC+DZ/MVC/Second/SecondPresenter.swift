@@ -17,11 +17,14 @@ protocol SecondPresenterProtocol: AnyObject {
     func viewDidLoad()
     func firstDisplay()
     func numberOfElementsInTMassiv() -> Int
+    func addDataInMassivData(data: Data)                        //2
+    func elementInMassivImage(for indexPah: IndexPath) -> Data  //2
+    func removeImage(for indexPah: IndexPath)
 }
 
 class SecondPresenter: SecondPresenterProtocol {
-   
     
+    private var massivData: [Data] = []
     
     
     weak var view: SecondViewProtocol?
@@ -31,7 +34,7 @@ class SecondPresenter: SecondPresenterProtocol {
     }
     
     func firstDisplay() {
-        if view?.massImageCount() == 0 {
+        if massivData.count == 0 {              //2
                     view?.addLable()
                 } else {
                     view?.hideLable()
@@ -41,10 +44,22 @@ class SecondPresenter: SecondPresenterProtocol {
     }
 
     func numberOfElementsInTMassiv() -> Int {
-       return view?.massImageCount() ?? 0
+        return massivData.count
     }
     
+    func addDataInMassivData(data: Data) {        //2
+        massivData.append(data)
+    }
     
+    func elementInMassivImage(for indexPah: IndexPath) -> Data {  //возвращает элемент из массива
+        return massivData[indexPah.row]
+    }
+    
+    func removeImage(for indexPah: IndexPath) {                   //удалили картинку delete
+       massivData.remove(at: indexPah.row)
+        view?.removeImage(for: indexPah)
+      
+    }
 }
 
 
