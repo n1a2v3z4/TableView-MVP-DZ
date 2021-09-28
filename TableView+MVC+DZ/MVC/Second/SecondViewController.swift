@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-// MARK: View -
 protocol SecondViewProtocol: AnyObject {
     
     func addLable()
