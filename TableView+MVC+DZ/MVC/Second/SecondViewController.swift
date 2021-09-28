@@ -19,10 +19,14 @@ protocol SecondViewProtocol: AnyObject {
     
     func removeImage (for indexPah: IndexPath)
     
+    func addElementToTableView(to indexPath: IndexPath)
+    
 }
 
 
 class SecondViewController: UIViewController, SecondViewProtocol {
+    
+    static var numberImage = 0
     
     @IBOutlet weak var tableViewOutlet: UITableView!
     
@@ -39,7 +43,7 @@ class SecondViewController: UIViewController, SecondViewProtocol {
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         tableViewOutlet.register(UINib(nibName: "MainTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MainTableViewCell")
-    }
+   }
     
     
     @IBAction func addImageAction(_ sender: Any) {
@@ -81,6 +85,10 @@ extension SecondViewController {
     func pngDataImage(image: UIImage) -> Data {                  //2
         return image.pngData()!
     }
+    
+    func addElementToTableView(to indexPath: IndexPath) {
+        tableViewOutlet.insertRows(at: [indexPath], with: .automatic)
+}
 }
 
 extension SecondViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -92,12 +100,14 @@ extension SecondViewController: UINavigationControllerDelegate, UIImagePickerCon
         
         let data = pngDataImage(image: image)          //2
         
+        SecondViewController.numberImage += 1
         presenter.addDataInMassivData(data: data)      //2
+        
         
         
         presenter.firstDisplay()  //убрали лэйбл и добавили таблицу
         
-        tableViewOutlet.insertRows(at: [IndexPath(row: presenter.numberOfElementsInTMassiv() - 1, section: 0)], with: .top)   //создает ячейку по индеку и сразу вызывает все делегатные методы таблицы
+        
         
     }
 }

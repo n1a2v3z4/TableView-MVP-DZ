@@ -8,7 +8,7 @@
 //
 
 import Foundation
-
+import CoreData
 
 
 // MARK: Presenter -
@@ -22,7 +22,10 @@ protocol SecondPresenterProtocol: AnyObject {
     func removeImage(for indexPah: IndexPath)
 }
 
-class SecondPresenter: SecondPresenterProtocol {
+class SecondPresenter: NSObject, SecondPresenterProtocol {
+    
+    private var fetchedResultController: NSFetchedResultsController<ImageData>?
+
     
     private var massivData: [Data] = []
     
@@ -30,11 +33,22 @@ class SecondPresenter: SecondPresenterProtocol {
     weak var view: SecondViewProtocol?
     
     func viewDidLoad() {
-        
+        let fetchRequest: NSFetchRequest<ImageData> = ImageData.fetchRequest()
+
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ImageData.imageCoreData), ascending: true)]
+        fetchedResultController = NSFetchedResultsController<ImageData>(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DatabaseService.shared.persistentContainer.mainContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        fetchedResultController?.delegate = self
+        try? fetchedResultController?.performFetch()
     }
     
     func firstDisplay() {
-        if massivData.count == 0 {              //2
+    
+        if SecondViewController.numberImage == 0 {              //2
                     view?.addLable()
                 } else {
                     view?.hideLable()
@@ -47,20 +61,52 @@ class SecondPresenter: SecondPresenterProtocol {
         return massivData.count
     }
     
-    func addDataInMassivData(data: Data) {        //2
-        massivData.append(data)
+    func addDataInMassivData(data: Data) {        //сохранили в coreData
+        DatabaseService.shared.insertEntityFor(
+            type: ImageData.self,
+            context: DatabaseService.shared.persistentContainer.mainContext,
+            closure: { image in
+                image.imageCoreData = data
+//                note.creationDate = CreationDate(date: Date())
+                DatabaseService.shared.saveMain(nil)
+                
+            }
+        )
+//   
     }
     
     func elementInMassivImage(for indexPah: IndexPath) -> Data {  //возвращает элемент из массива
-        return massivData[indexPah.row]
+        return (fetchedResultController?.object(at: indexPah).imageCoreData)!
     }
     
     func removeImage(for indexPah: IndexPath) {                   //удалили картинку delete
-       massivData.remove(at: indexPah.row)
-        view?.removeImage(for: indexPah)
+        guard let note = fetchedResultController?.object(at: indexPah) else {return}
+        DatabaseService.shared.delete(
+            note,
+            context: DatabaseService.shared.persistentContainer.mainContext,
+            closure: { _ in
+                DatabaseService.shared.saveMain(nil)
+            }
+        )
       
     }
 }
+extension SecondPresenter: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath else { return }
+            view?.addElementToTableView(to: newIndexPath)
+            
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            view?.removeImage(for: indexPath)
+        default:
+            break
+        }
+    }
 
 
 
+}
