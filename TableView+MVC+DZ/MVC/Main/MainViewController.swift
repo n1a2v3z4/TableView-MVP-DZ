@@ -34,9 +34,9 @@ class MainViewController: UIViewController, MainViewProtocol {
         textFildOutlet.isSecureTextEntry = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)  {
         
-        self.navigationController?.isNavigationBarHidden = true
+       self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func nextViewAction(_ sender: Any) {

@@ -12,7 +12,7 @@ import CoreData
 
 
 // MARK: Presenter -
-protocol SecondPresenterProtocol: AnyObject {
+protocol SecondPresenterProtocol {
 	var view: SecondViewProtocol? { get set }
     func viewDidLoad()
     func firstDisplay()
@@ -27,7 +27,7 @@ class SecondPresenter: NSObject, SecondPresenterProtocol {
     private var fetchedResultController: NSFetchedResultsController<ImageData>?
 
     
-    private var massivData: [Data] = []
+ 
     
     
     weak var view: SecondViewProtocol?
@@ -35,7 +35,7 @@ class SecondPresenter: NSObject, SecondPresenterProtocol {
     func viewDidLoad() {
         let fetchRequest: NSFetchRequest<ImageData> = ImageData.fetchRequest()
 
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(ImageData.imageCoreData), ascending: true)]
+        fetchRequest.sortDescriptors = []
         fetchedResultController = NSFetchedResultsController<ImageData>(
             fetchRequest: fetchRequest,
             managedObjectContext: DatabaseService.shared.persistentContainer.mainContext,
@@ -44,35 +44,36 @@ class SecondPresenter: NSObject, SecondPresenterProtocol {
         )
         fetchedResultController?.delegate = self
         try? fetchedResultController?.performFetch()
+        view?.reloadTableView()
     }
     
     func firstDisplay() {
     
-        if SecondViewController.numberImage == 0 {              //2
-                    view?.addLable()
+        if numberOfElementsInTMassiv() == 0 {              //2
+                    return
                 } else {
                     view?.hideLable()
                     view?.addTableView()
-            
         }
     }
 
     func numberOfElementsInTMassiv() -> Int {
-        return massivData.count
+        fetchedResultController?.fetchedObjects?.count ?? 0
     }
     
     func addDataInMassivData(data: Data) {        //сохранили в coreData
         DatabaseService.shared.insertEntityFor(
             type: ImageData.self,
             context: DatabaseService.shared.persistentContainer.mainContext,
-            closure: { image in
+            closure: { [weak self] image in
                 image.imageCoreData = data
-//                note.creationDate = CreationDate(date: Date())
-                DatabaseService.shared.saveMain(nil)
+                DatabaseService.shared.saveMain ({ //клоужер
+                    self!.firstDisplay()
+                })
                 
             }
         )
-//   
+
     }
     
     func elementInMassivImage(for indexPah: IndexPath) -> Data {  //возвращает элемент из массива

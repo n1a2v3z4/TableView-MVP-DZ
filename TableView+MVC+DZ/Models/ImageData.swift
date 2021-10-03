@@ -16,6 +16,6 @@ public class ImageData: NSManagedObject, Identifiable {
         return NSFetchRequest<ImageData>(entityName: "ImageData")
     }
 
-    @NSManaged public var imageCoreData: Data?
+    @NSManaged public var imageCoreData: Data
     
 }

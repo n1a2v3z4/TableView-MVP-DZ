@@ -21,12 +21,13 @@ protocol SecondViewProtocol: AnyObject {
     
     func addElementToTableView(to indexPath: IndexPath)
     
+    func reloadTableView()
+    
 }
 
 
 class SecondViewController: UIViewController, SecondViewProtocol {
     
-    static var numberImage = 0
     
     @IBOutlet weak var tableViewOutlet: UITableView!
     
@@ -39,14 +40,16 @@ class SecondViewController: UIViewController, SecondViewProtocol {
         
         presenter.view = self
         presenter.viewDidLoad()
-        presenter.firstDisplay()
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         tableViewOutlet.register(UINib(nibName: "MainTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MainTableViewCell")
+        addLable()
+        presenter.firstDisplay()
+
    }
     
     
-    @IBAction func addImageAction(_ sender: Any) {
+    @IBAction func addImageAction(_ sender: Any) { 
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -67,6 +70,7 @@ extension SecondViewController {
         label.font = UIFont.systemFont(ofSize: 30.0)
         view.addSubview(label)
         self.lableOutlet = label
+        
     }
     
     func hideLable() {                     //скрыли лэйбл
@@ -89,6 +93,11 @@ extension SecondViewController {
     func addElementToTableView(to indexPath: IndexPath) {
         tableViewOutlet.insertRows(at: [indexPath], with: .automatic)
 }
+    
+    func reloadTableView() {
+        tableViewOutlet.reloadData()
+    }
+    
 }
 
 extension SecondViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -100,14 +109,12 @@ extension SecondViewController: UINavigationControllerDelegate, UIImagePickerCon
         
         let data = pngDataImage(image: image)          //2
         
-        SecondViewController.numberImage += 1
         presenter.addDataInMassivData(data: data)      //2
         
         
-        
-        presenter.firstDisplay()  //убрали лэйбл и добавили таблицу
-        
-        
+       
+//        presenter.firstDisplay()  //убрали лэйбл и добавили таблицу
+    
         
     }
 }
@@ -120,8 +127,8 @@ extension SecondViewController: UITableViewDelegate {
                 UIContextualAction(
                     style: .destructive,
                     title: "Delete",
-                    handler: { _, _, _ in
-                        self.presenter.removeImage(for: indexPath)
+                    handler: { [weak self] _, _, _ in
+                        self!.presenter.removeImage(for: indexPath)
                     }
                 )
             ]

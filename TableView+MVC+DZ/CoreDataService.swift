@@ -32,13 +32,13 @@ class CoreDataStack {
     // Managed object model
     // swiftlint:disable force_unwrapping
     private lazy var managedObjectModel: NSManagedObjectModel = {
-        let url = Bundle.main.url(forResource: "TableView+MVC+DZ", withExtension: "momd")!
+        let url = Bundle.main.url(forResource: "xaxa", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: url)!
     }()
     // swiftlint:enable force_unwrapping
     
     private lazy var persistentStoreDescription: NSPersistentStoreDescription = {
-        let databaseFileName = "TableView+MVC+DZ.sqlite"
+        let databaseFileName = "xaxa.sqlite"
         let url = self.applicationSupportDirectoryURL.appendingPathComponent(databaseFileName)
         
         let description = NSPersistentStoreDescription(url: url)
